@@ -31,10 +31,6 @@
 #include "MyProject1.iop.h"
 #include "MyProject1.c.h"
 
-
-#if defined(CCI_USE_POOLBUFFER)
-
-#endif /* defined(CCI_USE_POOLBUFFER) */
 #include "AppPool/AppPool.h"
 
 #if defined(_LAY6_) && defined(ISO_VTC_GRAPHIC_AUX)
