@@ -480,10 +480,10 @@ struct AUX_InputSignalData_T
 	iso_s16    iVtFunction;       /**< Last function of VT response (#ISOVT_FUNC_e) */
 	iso_u16    objectIdOfAuxObject;
 	iso_s32    value1;            /**< Value of VT change numeric value */
-	iso_u16    inputObjectID;            /**< Word storage 1 */
+	iso_u16    inputObjectID;     /**< Word storage 1 */
 	iso_u16    value2;            /**< Word storage 2 */
 	iso_u8     bPara;             /**< Byte storage i. e. soft key number */
-    iso_u8     u8Instance;                            /**< \brief Identifier of the client instance */
+    iso_u8     u8Instance;        /**< \brief Identifier of the client instance */
 	iso_s16    iErrorCode;        /**< Error iso_u8 of response messages */
 
 };
