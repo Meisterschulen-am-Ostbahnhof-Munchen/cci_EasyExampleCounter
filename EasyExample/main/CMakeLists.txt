@@ -20,7 +20,7 @@ register_component()
   
 # Import the library, specifying a target name and the library path.
 # The private dependencies of the library is also specified.
-add_prebuilt_library(libcci_ecu_driver "../components/lib_cci/libcci_ecu_driver.a")
+add_prebuilt_library(libcci_ecu_driver "../components/lib_cci/${CONFIG_IDF_TARGET}/libcci_ecu_driver.a")
 
 # `main` calls a function from the library, so link it to `main`
 target_link_libraries(${COMPONENT_LIB} PRIVATE libcci_ecu_driver)
