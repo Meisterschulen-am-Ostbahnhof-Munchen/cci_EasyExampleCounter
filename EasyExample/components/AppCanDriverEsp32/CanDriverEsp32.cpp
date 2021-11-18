@@ -19,6 +19,7 @@
 /* ************************************************************************ */
 
 #include <stdio.h>
+#include "sdkconfig.h"
 #include "AppHW.h"
 #include "CanDriverEsp32.h"
 #include "driver/twai.h"
@@ -39,8 +40,15 @@ static void HW_CanMsgPrint(uint8_t canNode_u8, twai_message_t* twai_msg_ps, uint
 
 #define CANBUS_TAG      "CANBUS Master"
 #define CAN2IP_TAG      "CAN2IP Master"
+
+#if CONFIG_IDF_TARGET_ESP32
 #define TX_GPIO_NUM             21
 #define RX_GPIO_NUM             22
+#elif CONFIG_IDF_TARGET_ESP32C3
+#define TX_GPIO_NUM             21
+#define RX_GPIO_NUM             20
+#endif
+
 
 static const twai_timing_config_t t_config = TWAI_TIMING_CONFIG_250KBITS();
 static const twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL();
