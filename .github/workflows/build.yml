@@ -36,7 +36,6 @@ jobs:
         path: EasyExample/components/can2ip
     - uses: actions/checkout@v2
       with:
-        submodules: true
         repository: espressif/esp-idf
      - uses: actions/checkout@v2
        with:
