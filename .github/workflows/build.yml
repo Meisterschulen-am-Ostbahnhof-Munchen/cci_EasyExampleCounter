@@ -36,10 +36,10 @@ jobs:
         path: EasyExample/components/can2ip
     - uses: actions/checkout@v2
       with:
-        repository: espressif/esp-idf
         submodules: true
+        repository: espressif/esp-idf
      - uses: actions/checkout@v2
-      with:
+       with:
         repository: Meisterschulen-am-Ostbahnhof-Munchen/cci_EasyExample
         
     - name: esp32s3_build_test
