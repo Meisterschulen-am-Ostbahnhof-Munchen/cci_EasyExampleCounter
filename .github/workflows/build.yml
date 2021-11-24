@@ -34,19 +34,13 @@ jobs:
         repository: Meisterschulen-am-Ostbahnhof-Munchen/can2ip
         token: ${{ secrets.PAT_TOKEN }} # `PAT_TOKEN` is a secret that contains your PAT PAT_TOKEN
         path: EasyExample/components/can2ip
-    - uses: actions/checkout@v2
-      with:
-        repository: espressif/esp-idf
      - uses: actions/checkout@v2
-       with:
-        repository: Meisterschulen-am-Ostbahnhof-Munchen/cci_EasyExample
         
     - name: esp32s3_build_test
       run: |
         export PROJECT_PATH=$PWD
         cd $PROJECT_PATH/.github/workflows
         git clone --recursive https://github.com/espressif/esp-idf
-        git submodule update --init --recursive
         ./esp-idf/install.sh
         . ./esp-idf/export.sh
         echo $PATH
