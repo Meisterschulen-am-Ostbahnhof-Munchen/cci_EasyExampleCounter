@@ -35,10 +35,12 @@ jobs:
         token: ${{ secrets.PAT_TOKEN }} # `PAT_TOKEN` is a secret that contains your PAT PAT_TOKEN
         path: EasyExample/components/can2ip
     - uses: actions/checkout@v2
+      with:
         repository: espressif/esp-idf
         submodules: true
      - uses: actions/checkout@v2
-
+      with:
+        repository: Meisterschulen-am-Ostbahnhof-Munchen/cci_EasyExample
         
     - name: esp32s3_build_test
       run: |
