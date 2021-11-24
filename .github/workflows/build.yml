@@ -23,7 +23,7 @@ jobs:
         python-version: '3.x'
     - name: clone esp-idf
       run: |
-        python -m pip install --user -r /home/runner/work/esp-at/esp-at/requirements.txt
+        python -m pip install --user -r /home/runner/work/cci_EasyExample/cci_EasyExample/requirements.txt
         mkdir build
         echo -e "{\"platform\": \"PLATFORM_ESP32\", \"module\": \"WROOM-32\", \"silence\": 0}" > build/module_info.json
         ./build.py reconfigure || echo "skip exception"
@@ -32,7 +32,7 @@ jobs:
       env:
         IDF_PATH: ${{ github.workspace }}/esp-idf
       run: |
-        python -m pip install --user -r /home/runner/work/esp-at/esp-at/esp-idf/requirements.txt
+        python -m pip install --user -r /home/runner/work/cci_EasyExample/cci_EasyExample/esp-idf/requirements.txt
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
