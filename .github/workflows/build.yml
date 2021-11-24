@@ -5,7 +5,9 @@ on:
   push:
     branches:
       - master
+      - develop
       - release/*
+      - feature/*
 
 jobs:
   build-esp32-wroom-at:
