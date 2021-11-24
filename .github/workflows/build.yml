@@ -21,11 +21,23 @@ jobs:
         key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
     - uses: actions/checkout@v2
       with:
-        submodules: true
+        repository: Meisterschulen-am-Ostbahnhof-Munchen/cci_ecu_driver_private
+        token: ${{ secrets.PAT_TOKEN }} # `PAT_TOKEN` is a secret that contains your PAT PAT_TOKEN
+        path: EasyExample/components/lib_cci
+    - uses: actions/checkout@v2
+      with:
+        repository: Meisterschulen-am-Ostbahnhof-Munchen/tcp_server
+        token: ${{ secrets.PAT_TOKEN }} # `PAT_TOKEN` is a secret that contains your PAT PAT_TOKEN
+        path: EasyExample/components/tcp_server
+    - uses: actions/checkout@v2
+      with:
         repository: Meisterschulen-am-Ostbahnhof-Munchen/can2ip
         token: ${{ secrets.PAT_TOKEN }} # `PAT_TOKEN` is a secret that contains your PAT PAT_TOKEN
         path: EasyExample/components/can2ip
+    - uses: actions/checkout@v2
 
+
+        
     - name: esp32s3_build_test
       run: |
         export PROJECT_PATH=$PWD
