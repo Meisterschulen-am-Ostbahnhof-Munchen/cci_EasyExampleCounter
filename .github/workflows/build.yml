@@ -1,20 +1,88 @@
-name: Build
+  
+name: C/C++ CI
+
 on:
   push:
     branches:
       - master
-  pull_request:
-    types: [opened, synchronize, reopened]
+      - release/*
+
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  build-esp32-wroom-at:
     runs-on: ubuntu-latest
+    env:
+      SONAR_SCANNER_VERSION: 4.4.0.2170
+      SONAR_SERVER_URL: "https://sonarcloud.io"
+      BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory # Directory where build-wrapper output will be placed
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: clone esp-idf
+      run: |
+        python -m pip install --user -r /home/runner/work/esp-at/esp-at/requirements.txt
+        mkdir build
+        echo -e "{\"platform\": \"PLATFORM_ESP32\", \"module\": \"WROOM-32\", \"silence\": 0}" > build/module_info.json
+        ./build.py reconfigure || echo "skip exception"
+      shell: bash
+    - name: Install dependencies
+      env:
+        IDF_PATH: ${{ github.workspace }}/esp-idf
+      run: |
+        python -m pip install --user -r /home/runner/work/esp-at/esp-at/esp-idf/requirements.txt
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Download and set up sonar-scanner
+      env:
+        SONAR_SCANNER_DOWNLOAD_URL: https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-${{ env.SONAR_SCANNER_VERSION }}-linux.zip
+      run: |
+        mkdir -p $HOME/.sonar
+        curl -sSLo $HOME/.sonar/sonar-scanner.zip ${{ env.SONAR_SCANNER_DOWNLOAD_URL }} 
+        unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+        echo "$HOME/.sonar/sonar-scanner-${{ env.SONAR_SCANNER_VERSION }}-linux/bin" >> $GITHUB_PATH
+    - name: Download and set up build-wrapper
+      env:
+        BUILD_WRAPPER_DOWNLOAD_URL: ${{ env.SONAR_SERVER_URL }}/static/cpp/build-wrapper-linux-x86.zip
+      run: |
+        curl -sSLo $HOME/.sonar/build-wrapper-linux-x86.zip ${{ env.BUILD_WRAPPER_DOWNLOAD_URL }}
+        unzip -o $HOME/.sonar/build-wrapper-linux-x86.zip -d $HOME/.sonar/
+        echo "$HOME/.sonar/build-wrapper-linux-x86" >> $GITHUB_PATH
+    - name: Compiling
+      env:
+
+      run: |
+
+        
+        python ./esp-idf/tools/idf_tools.py --non-interactive install && eval "$(python ./esp-idf/tools/idf_tools.py --non-interactive export)" || exit 1
+        python ./esp-idf/tools/idf_tools.py export --prefer-system
+        
+        build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} ./build.py build
+        upload_dir=esp32-wroom-at
+        mkdir -p $upload_dir $upload_dir/bootloader $upload_dir/partition_table $upload_dir/customized_partitions $upload_dir/factory
+        cp build/flash_project_args $upload_dir/download.config
+        cp sdkconfig $upload_dir/
+        cp build/*.bin $upload_dir/
+        cp build/*.elf $upload_dir/
+        cp build/*.map $upload_dir/
+        cp build/bootloader/*.bin $upload_dir/bootloader/
+        cp build/partition_table/*.bin $upload_dir/partition_table/
+        cp build/customized_partitions/*.bin $upload_dir/customized_partitions/
+        cp build/flasher_args.json $upload_dir/
+        cp build/flash_project_args $upload_dir/download.config
+        cp build/factory/* $upload_dir/factory
+    - name: Run sonar-scanner
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        sonar-scanner --define sonar.host.url="${{ env.SONAR_SERVER_URL }}" --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
+      shell: bash
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: esp32-wroom-at
+        path: esp32-wroom-at
+   
