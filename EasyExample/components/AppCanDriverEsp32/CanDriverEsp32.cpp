@@ -52,11 +52,14 @@ static void HW_CanMsgPrint(uint8_t canNode_u8, twai_message_t* twai_msg_ps, uint
 
 static const twai_timing_config_t t_config = TWAI_TIMING_CONFIG_250KBITS();
 static const twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL();
-//static const twai_general_config_t g_config = TWAI_GENERAL_CONFIG_DEFAULT((gpio_num_t)TX_GPIO_NUM, (gpio_num_t)RX_GPIO_NUM, CAN_MODE_NORMAL);
+
 static const twai_general_config_t g_config = {.mode = TWAI_MODE_NORMAL,
-                                              .tx_io = (gpio_num_t)TX_GPIO_NUM, .rx_io = (gpio_num_t)RX_GPIO_NUM,
-                                              .clkout_io = (gpio_num_t)TWAI_IO_UNUSED, .bus_off_io = (gpio_num_t)TWAI_IO_UNUSED,
-                                              .tx_queue_len = 150, .rx_queue_len = 1000,
+                                              .tx_io = (gpio_num_t)TX_GPIO_NUM,
+											  .rx_io = (gpio_num_t)RX_GPIO_NUM,
+                                              .clkout_io = (gpio_num_t)TWAI_IO_UNUSED,
+											  .bus_off_io = (gpio_num_t)TWAI_IO_UNUSED,
+                                              .tx_queue_len = 150,
+											  .rx_queue_len = 1000,
                                               .alerts_enabled = TWAI_ALERT_NONE,
                                               .clkout_divider = 0,
 											  .intr_flags = ESP_INTR_FLAG_LEVEL1};
@@ -226,18 +229,7 @@ int16_t hw_CanGetFreeSendMsgBufferSize(uint8_t canNode_u8) {
 	return a + b;
 }
 
-static void HW_CanMsgPrint(uint8_t canNode_u8, twai_message_t* twai_msg_ps, uint8_t isRX)
-{
-   return; //disable CANPrint.
-   const char_t *pcMsgTxt;
-   const char_t *pcRxTx;
-   /* printf hw_DebugPrint hw_DebugTrace */
-   #define CAN_PRINT hw_DebugTrace
-
-   pcRxTx = (isRX > 0u) ? "Rx" : "Tx";
-   CAN_PRINT("%2u %2s %8x %1u ", canNode_u8, pcRxTx, twai_msg_ps->identifier, twai_msg_ps->data_length_code);
-
-#if defined(USE_APP_OUTPUT)
+const char_t* doAppOutput(const char_t *pcMsgTxt, twai_message_t *twai_msg_ps) {
    {  // Get PGN and extra text if available
       uint32_t u32PGN;
       u32PGN = (twai_msg_ps->identifier & 0x03FFFF00uL) >> 8u;
@@ -268,6 +260,20 @@ static void HW_CanMsgPrint(uint8_t canNode_u8, twai_message_t* twai_msg_ps, uint
       }
 
    }
+
+static void HW_CanMsgPrint(uint8_t canNode_u8, twai_message_t* twai_msg_ps, uint8_t isRX)
+{
+   return; //disable CANPrint.
+   const char_t *pcMsgTxt;
+   const char_t *pcRxTx;
+   /* printf hw_DebugPrint hw_DebugTrace */
+   #define CAN_PRINT hw_DebugTrace
+
+   pcRxTx = (isRX > 0u) ? "Rx" : "Tx";
+   CAN_PRINT("%2u %2s %8x %1u ", canNode_u8, pcRxTx, twai_msg_ps->identifier, twai_msg_ps->data_length_code);
+
+#if defined(USE_APP_OUTPUT)
+	pcMsgTxt = doAppOutput(pcMsgTxt, twai_msg_ps);
 #else 
    pcMsgTxt = " ";
 #endif /* defined(USE_APP_OUTPUT) */ 
