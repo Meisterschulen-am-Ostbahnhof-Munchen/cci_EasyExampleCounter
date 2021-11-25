@@ -58,9 +58,12 @@ jobs:
         echo "$HOME/.sonar/build-wrapper-linux-x86" >> $GITHUB_PATH
     - name: esp32s3_build_test2
       run: |
+        cd $PROJECT_PATH/.github/workflows
+        ./esp-idf/install.sh
+        . ./esp-idf/export.sh
+        echo $PATH
+        cd $PROJECT_PATH/EasyExample
         idf.py --preview set-target esp32s3
-    - name: esp32s3_build_test3
-      run: |
         build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} idf.py build
     - name: Run sonar-scanner
       env:
