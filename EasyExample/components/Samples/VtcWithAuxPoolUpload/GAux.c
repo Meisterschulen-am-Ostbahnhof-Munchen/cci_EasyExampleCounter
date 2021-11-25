@@ -566,7 +566,7 @@ void ReducePool(iso_u8 pu8PoolDataInOut[], iso_u32* pu32PoolSizeInOut)
         iso_u32 u32PoolSrcIdx = 0;
         iso_u32 u32PoolCopyIdx = 0;
         iso_u32 u32PoolSize = *pu32PoolSizeInOut;
-        while (u32PoolSrcIdx < u32PoolSize)
+        while (u32PoolSrcIdx < (u32PoolSize + 1))
         {
             iso_bool copyObject = ISO_FALSE;
             iso_u8* poolData = &pu8PoolDataInOut[u32PoolSrcIdx];
