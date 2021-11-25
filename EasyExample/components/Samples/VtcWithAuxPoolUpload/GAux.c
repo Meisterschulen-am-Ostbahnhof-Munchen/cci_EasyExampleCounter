@@ -572,8 +572,8 @@ void ReducePool(iso_u8 pu8PoolDataInOut[], iso_u32* pu32PoolSizeInOut)
             iso_u8* poolData = &pu8PoolDataInOut[u32PoolSrcIdx];
             iso_u32 objectSize = IsoVtcPoolObjSize(poolData);
             iso_u32 newObjectSize = objectSize;
-//          iso_u16 objectID = getU16(poolData);
-            OBJTYP_e eObjTyp = (OBJTYP_e)poolData[2];
+            OBJTYP_e eObjTyp = ObjectUndef;
+            eObjTyp = (OBJTYP_e)poolData[2];
             switch (eObjTyp)
             {
             case WorkingSet:  /* Top level object describes an implement (working set). */
