@@ -44,6 +44,12 @@ static void HW_CanMsgPrint(uint8_t canNode_u8, twai_message_t* twai_msg_ps, uint
 #if CONFIG_IDF_TARGET_ESP32
 #define TX_GPIO_NUM             21
 #define RX_GPIO_NUM             22
+#elif CONFIG_IDF_TARGET_ESP32S2
+#define TX_GPIO_NUM             4
+#define RX_GPIO_NUM             9
+#elif CONFIG_IDF_TARGET_ESP32S3
+#define TX_GPIO_NUM             4
+#define RX_GPIO_NUM             9
 #elif CONFIG_IDF_TARGET_ESP32C3
 #define TX_GPIO_NUM             4
 #define RX_GPIO_NUM             9
