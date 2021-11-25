@@ -479,8 +479,15 @@ static void PoolLoadFromFile(const char * pcFilename)
         fseek(pFile, 0L, SEEK_END);
         u32PoolSize = ftell(pFile);
         pu8PoolData = malloc(u32PoolSize);
-        fseek(pFile, 0L, SEEK_SET);
-        u32PoolSize = (iso_u32)fread(pu8PoolData, sizeof(iso_u8), u32PoolSize, pFile);
+        if (pu8PoolData)
+        {   /* malloc was OK */
+            fseek(pFile, 0L, SEEK_SET);
+            u32PoolSize = (iso_u32)fread(pu8PoolData, sizeof(iso_u8), u32PoolSize, pFile);
+        }
+        else
+        {
+            u32PoolSize = 0UL;
+        }
         fclose(pFile);
     }
 }
