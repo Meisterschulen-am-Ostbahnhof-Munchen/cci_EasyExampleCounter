@@ -34,7 +34,7 @@ jobs:
         repository: Meisterschulen-am-Ostbahnhof-Munchen/can2ip
         token: ${{ secrets.PAT_TOKEN }} # `PAT_TOKEN` is a secret that contains your PAT PAT_TOKEN
         path: EasyExample/components/can2ip
-     - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
         
     - name: esp32s3_build_test
       run: |
