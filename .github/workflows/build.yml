@@ -8,7 +8,7 @@ on:
       - release/*
       - feature/*
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel 
 jobs:
   build_esp32s3:
     runs-on: ubuntu-latest
