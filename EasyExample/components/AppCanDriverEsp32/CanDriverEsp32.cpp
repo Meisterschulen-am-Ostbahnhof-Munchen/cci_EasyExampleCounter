@@ -266,6 +266,8 @@ const char_t* doAppOutput(const char_t *pcMsgTxt, twai_message_t *twai_msg_ps) {
       }
 
    }
+   return pcMsgTxt;
+}
 
 static void HW_CanMsgPrint(uint8_t canNode_u8, twai_message_t* twai_msg_ps, uint8_t isRX)
 {
