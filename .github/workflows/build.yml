@@ -37,8 +37,11 @@ jobs:
         . ./esp-idf/export.sh
         echo $PATH
         cd $PROJECT_PATH/EasyExample
-
+    - name: esp32s3_build_test2
+      run: |
         idf.py --preview set-target esp32s3
+    - name: esp32s3_build_test3
+      run: |
         idf.py build
     - uses: actions/upload-artifact@v2
       with:
