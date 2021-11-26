@@ -38,8 +38,10 @@
 
 static void HW_CanMsgPrint(uint8_t canNode_u8, twai_message_t* twai_msg_ps, uint8_t isRX);
 
-#define CANBUS_TAG      "CANBUS Master"
-#define CAN2IP_TAG      "CAN2IP Master"
+static const char * const CANBUS_TAG  =    "CANBUS Master";
+#if(CONFIG_CAN2IP_MODE_ON)
+static const char * const CAN2IP_TAG  =    "CAN2IP Master";
+#endif
 
 #if CONFIG_IDF_TARGET_ESP32
 #define TX_GPIO_NUM             21
@@ -48,8 +50,8 @@ static void HW_CanMsgPrint(uint8_t canNode_u8, twai_message_t* twai_msg_ps, uint
 #define TX_GPIO_NUM             4
 #define RX_GPIO_NUM             9
 #elif CONFIG_IDF_TARGET_ESP32S3
-#define TX_GPIO_NUM             4
-#define RX_GPIO_NUM             9
+#define TX_GPIO_NUM             5
+#define RX_GPIO_NUM             4
 #elif CONFIG_IDF_TARGET_ESP32C3
 #define TX_GPIO_NUM             4
 #define RX_GPIO_NUM             9
