@@ -8,7 +8,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <settings.h>
+#include "settings.h"
 #include <cstring>
 #include "esp_err.h"
 #include "esp_log.h"

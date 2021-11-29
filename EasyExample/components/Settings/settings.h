@@ -7,8 +7,6 @@
 #ifndef DEF_SETTINGS_H
 #define DEF_SETTINGS_H
 
-#include <stdint.h>
-#include <stdlib.h>   // required for 'size_t'
 
 #ifdef __cplusplus
 extern "C" {

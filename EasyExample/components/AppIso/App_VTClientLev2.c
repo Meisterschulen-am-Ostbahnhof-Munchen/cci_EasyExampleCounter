@@ -14,6 +14,7 @@
 */
 /* **************************  includes ********************************** */
 
+#include <stddef.h>
 #include "IsoDef.h"
 
 #ifdef _LAY6_  /* compile only if VT client is enabled */
