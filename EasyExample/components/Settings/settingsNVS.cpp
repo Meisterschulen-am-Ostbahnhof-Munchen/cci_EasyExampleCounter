@@ -5,16 +5,15 @@
 
 */
 /* ************************************************************************ */
-#include <settings.h>
+
+#include <stddef.h>
 #include <stdint.h>
-#include <string.h>
-#include <string>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_system.h"
-#include "nvs_flash.h"
-#include "nvs.h"
+#include <settings.h>
+#include <cstring>
+#include "esp_err.h"
 #include "esp_log.h"
+#include "nvs.h"
+#include "nvs_flash.h"
 
 
 
