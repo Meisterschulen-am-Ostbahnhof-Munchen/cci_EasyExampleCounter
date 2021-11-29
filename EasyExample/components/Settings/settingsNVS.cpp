@@ -6,7 +6,6 @@
 */
 /* ************************************************************************ */
 #include <settings.h>
-#include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 #include <string>
@@ -18,19 +17,10 @@
 #include "esp_log.h"
 
 
-#if 1
-#define vswprintf_s swprintf
-#define vsprintf_s snprintf
-#define _strtoui64 strtoull
-#define vswprintf_s swprintf
-#define vsprintf_s snprintf
-#define sprintf_s snprintf
-#define strcpy_s strcpy
-#endif // 1
 
 /* ************************************************************************ */
 
-static const char TAG[] = "settings";
+static const char * const TAG = "settings";
 
 
 
