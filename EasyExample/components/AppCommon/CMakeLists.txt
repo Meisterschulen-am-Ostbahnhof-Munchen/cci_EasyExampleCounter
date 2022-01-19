@@ -17,7 +17,7 @@ set(COMPONENT_REQUIRES
 )
 
 set(COMPONENT_PRIV_REQUIRES 
-	lib_cci 
+	cci 
 	Settings 
 	IsoConfig
 )

@@ -3,12 +3,8 @@
 
 
 set(COMPONENT_SRCS 
-  "App_Base.c"
   "App_Main.c"
-  "App_VTClient.c"
-  "App_TCClient.c"
-  "App_VTClientLev2.c"
-  "AppMemAccess.cpp"
+
 )
 
 set(COMPONENT_ADD_INCLUDEDIRS 
@@ -20,7 +16,7 @@ set(COMPONENT_REQUIRES
 )
 
 set(COMPONENT_PRIV_REQUIRES 
-	lib_cci 
+	cci 
 	IsoConfig 
 	ISODesigner 
 	Settings 
@@ -28,8 +24,9 @@ set(COMPONENT_PRIV_REQUIRES
 	AppPool
 	Diagnostic 
 	AppCanDriverEsp32
-	Samples
 	SerialNumber
+	App_Base
+	AddOn
 )
 
 register_component()

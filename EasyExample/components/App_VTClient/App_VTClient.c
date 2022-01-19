@@ -35,7 +35,7 @@
 #include "AppPool.h"
 
 #if defined(_LAY6_) && defined(ISO_VTC_GRAPHIC_AUX)
-#include "../Samples/VtcWithAuxPoolUpload/GAux.h"
+#include "GAux.h"
 #endif // defined(_LAY6_) && defined(ISO_VTC_GRAPHIC_AUX)
 
 /* ****************************** defines  ******************************** */

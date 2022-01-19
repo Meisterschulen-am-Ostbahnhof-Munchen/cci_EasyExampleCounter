@@ -3,13 +3,13 @@
 
 
 set(COMPONENT_SRCS 
-  "AppPool.cpp"
-
+  "App_VTClient.c"
+  "App_VTClientLev2.c"
+  "AppMemAccess.cpp"
 )
 
 set(COMPONENT_ADD_INCLUDEDIRS 
   "."
-  ".."
 )
 
 
@@ -19,8 +19,13 @@ set(COMPONENT_REQUIRES
 set(COMPONENT_PRIV_REQUIRES 
 	cci 
 	IsoConfig 
-	AppCommon
-	spiffs
+	Settings
+	AppCommon 
+	Diagnostic  
+	pools
+	ISODesigner
+	GAux
+	AppPool
 )
 
 register_component()

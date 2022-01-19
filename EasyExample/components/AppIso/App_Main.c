@@ -25,7 +25,7 @@
 
 #include "AppCommon/AppOutput.h"
 
-#include "../Samples/AddOn/AppIso_Output.h"  /* relative to IsoLib */
+#include "AppIso_Output.h"  /* relative to IsoLib */
 #include "AppIso_Diagnostic.h"
 #include "sdkconfig.h"
 

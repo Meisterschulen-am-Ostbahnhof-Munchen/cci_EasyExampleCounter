@@ -3,13 +3,11 @@
 
 
 set(COMPONENT_SRCS 
-  "AppPool.cpp"
-
+  "GAux.c"
 )
 
 set(COMPONENT_ADD_INCLUDEDIRS 
   "."
-  ".."
 )
 
 
@@ -19,8 +17,7 @@ set(COMPONENT_REQUIRES
 set(COMPONENT_PRIV_REQUIRES 
 	cci 
 	IsoConfig 
-	AppCommon
-	spiffs
+	ISODesigner
 )
 
 register_component()

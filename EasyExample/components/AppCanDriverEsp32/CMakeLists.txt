@@ -15,7 +15,7 @@ set(COMPONENT_REQUIRES
 
 set(COMPONENT_PRIV_REQUIRES 
 	AppCommon 
-	lib_cci 
+	cci 
 	IsoConfig
 )
 

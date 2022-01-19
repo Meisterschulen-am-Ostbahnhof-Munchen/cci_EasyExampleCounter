@@ -1,26 +1,25 @@
 # Edit following two lines to set component requirements (see docs)
 
 
+
 set(COMPONENT_SRCS 
-  "AddOn/AppIso_Output.c"
-  "VtcWithAuxPoolUpload/GAux.c"
+  "App_TCClient.c"
 )
 
 set(COMPONENT_ADD_INCLUDEDIRS 
   "."
-  ".."
-  "AddOn"
-  "VtcWithAuxPoolUpload"
 )
+
 
 set(COMPONENT_REQUIRES 
 )
 
 set(COMPONENT_PRIV_REQUIRES 
-	lib_cci 
-	IsoConfig
+	cci 
+	IsoConfig 
+	Settings
+	AppCommon 
+	Diagnostic  
 )
 
-
 register_component()
-

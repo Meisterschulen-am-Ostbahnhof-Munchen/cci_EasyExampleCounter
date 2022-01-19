@@ -1,6 +1,6 @@
 /* ************************************************************************ */
 /*!
-   \file       AppIso_Impl_VTClient.h
+   \file       App_VTClient.h
 
    \brief      Header file for VT client implementation 
 
