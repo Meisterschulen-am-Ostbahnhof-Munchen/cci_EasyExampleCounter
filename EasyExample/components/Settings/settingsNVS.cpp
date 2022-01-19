@@ -183,7 +183,7 @@ public :
         {
             if (defaultValue == nullptr)
             {
-                return (size_t)0U;
+                return 0U;
             }
         	Settings::setString(section, key, defaultValue);
         }
