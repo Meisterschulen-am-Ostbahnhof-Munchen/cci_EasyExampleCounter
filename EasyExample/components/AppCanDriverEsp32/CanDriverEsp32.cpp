@@ -54,7 +54,7 @@ static const char * const CAN2IP_TAG  =    "CAN2IP Master";
 #define RX_GPIO_NUM             4
 #elif CONFIG_IDF_TARGET_ESP32C3
 #define TX_GPIO_NUM             4
-#define RX_GPIO_NUM             9
+#define RX_GPIO_NUM             7
 #endif
 
 
