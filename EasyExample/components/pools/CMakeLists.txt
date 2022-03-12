@@ -12,7 +12,7 @@ register_component()
 
 
 set(src_file ${CMAKE_SOURCE_DIR}/components/ISODesigner/MyWorkspace1/MyProject1/Output/MyProject1.iop)
-set(dst_file ${CMAKE_SOURCE_DIR}/spiffs_image/pools/MyProject1.iop)
+set(dst_file ${CMAKE_SOURCE_DIR}/components/pools/spiffs_image/pools/MyProject1.iop)
 
 
 # After build, copy the MyProject1.iop
