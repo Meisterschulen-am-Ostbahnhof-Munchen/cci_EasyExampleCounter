@@ -22,8 +22,8 @@
 #include "VIEngine.h"
 #include "App_VTClientLev2.h"   // -> Object defines
 
-#include "MyProject1.iop.h"
-#include "MyProject1.c.h"
+#include "DefaultPool.iop.h"
+#include "DefaultPool.c.h"
 
 #include "settings.h"
 
