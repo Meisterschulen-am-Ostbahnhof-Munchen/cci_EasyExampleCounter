@@ -28,14 +28,10 @@
 #include "VIEngine.h"
 #include "App_VTClientLev2.h"
 
-#include "MyProject1.iop.h"
-#include "MyProject1.c.h"
+#include "DefaultPool.iop.h"
+#include "DefaultPool.c.h"
 
-
-#if defined(CCI_USE_POOLBUFFER)
-
-#endif /* defined(CCI_USE_POOLBUFFER) */
-#include "AppPool/AppPool.h"
+#include "AppPool.h"
 
 #if defined(_LAY6_) && defined(ISO_VTC_GRAPHIC_AUX)
 #include "../Samples/VtcWithAuxPoolUpload/GAux.h"
@@ -64,9 +60,9 @@ static void fillAuxSectionName(iso_char auxSection[], iso_u32 u32ArraySize);
 
 
 #if defined(ESP_PLATFORM)
-static const char *POOL_FILENAME = "/spiffs/pools/MyProject1.iop";
+static const char *POOL_FILENAME = "/spiffs/pools/DefaultPool.iop";
 #else
-static const char *POOL_FILENAME = "pools/MyProject1.iop";
+static const char *POOL_FILENAME = "pools/DefaultPool.iop";
 #endif // defined(ESP_PLATFORM)
 
 

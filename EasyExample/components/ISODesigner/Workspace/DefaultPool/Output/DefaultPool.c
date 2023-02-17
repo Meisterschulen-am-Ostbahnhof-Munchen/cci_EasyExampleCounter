@@ -1,8 +1,8 @@
 // ISO-Designer ISO 11783   Version 5.6.1.5243 Jetter AG
 // Do not change!
 
-#include "MyProject1.iop.h"
-#include "MyProject1.c.h"
+#include "DefaultPool.iop.h"
+#include "DefaultPool.c.h"
 
 #define WORD(w)  (unsigned char)w, (unsigned char)(w >> 8)
 #define LONG(l)  (unsigned char)l, \
@@ -15,7 +15,7 @@
 #define MACRO(ev, id)    ev, id
 #define COLOR(c)         c
 
-const unsigned char ISO_OP_MEMORY_CLASS isoOP_MyProject1[] = {
+const unsigned char ISO_OP_MEMORY_CLASS isoOP_DefaultPool[] = {
 	17,
 	ID(WorkingSet_0), TYPEID_WORKSET, COLOR(187), 1, ID(DataMask_Home), 1, 0, 2,
 		XYREF(OutputString_Fasszaehler, 0, 20),
@@ -225,8 +225,8 @@ const unsigned char ISO_OP_MEMORY_CLASS isoOP_MyProject1[] = {
 	ID(ObjectPointer_Tagesziel), TYPEID_OBJPTR, ID(ID_NULL), 
 	ID(ObjectPointer_Null1), TYPEID_OBJPTR, ID(ID_NULL), 
 	ID(ObjectPointer_Gesamtziel), TYPEID_OBJPTR, ID(ID_NULL), 
-	ID(AuxFunction2_PlusPlus), TYPEID_AUXFUNC2, COLOR(187), 130, 1, 
+	ID(AuxFunction2_PlusPlus), TYPEID_AUXFUNC2, COLOR(187), 255, 1, 
 		XYREF(IconSoftKey_PlusPlus, 4, 4),
-	ID(AuxFunction2_MinusMinus), TYPEID_AUXFUNC2, COLOR(187), 130, 1, 
+	ID(AuxFunction2_MinusMinus), TYPEID_AUXFUNC2, COLOR(187), 254, 1, 
 		XYREF(Icon_SoftKey_MinusMinus, 4, 4),
-}; // isoOP_MyProject1
+}; // isoOP_DefaultPool

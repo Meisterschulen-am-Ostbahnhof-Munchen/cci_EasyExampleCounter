@@ -24,8 +24,6 @@
 
 
 #include "AppCommon/AppOutput.h"
-#include "App_VTClient.h"  /* needed only for DoKeyBoard() */
-//#include "App_TCClient.h"  /* needed only for DoKeyBoard() */
 
 #include "../Samples/AddOn/AppIso_Output.h"  /* relative to IsoLib */
 #include "AppIso_Diagnostic.h"
@@ -43,8 +41,6 @@ void AppIso_Init(void);
 void AppIso_Cyclic(void);
 
 
-static void PrintKeyBoard(void);
-static void DoKeyBoard(void);
 
 
 
@@ -78,7 +74,6 @@ int isobus_main(int_t argc, char_t* argv[])
 #if !defined(DISABLE_CMDLINE_PARSING)
    hw_SetConfiguration(argc, argv);
 #endif 
-   PrintKeyBoard();
    hw_DebugPrint("ISO Application starts \n");
    /* Initialize application */
    AppHW_Init();
@@ -118,7 +113,6 @@ int isobus_main(int_t argc, char_t* argv[])
       AppIso_Cyclic();
 
       hw_SimDoSleep(ISO_NM_LOOPTIME);  // Simulate loop time "5ms"
-      DoKeyBoard();
    }
 
    hw_Shutdown();
@@ -274,78 +268,5 @@ static void Do_ReceiveCanMessages(void)
    } while ((msgFound == ISO_TRUE) && (msgCount <= 40u));
 }
 /*! [Do_ReceiveCanMessages] */
-
-/* ************************************************************************ */
-
-static void PrintKeyBoard(void)
-{
-   hw_DebugPrint("\nCommands:\n");
-   hw_DebugPrint("1 - \n");
-   hw_DebugPrint("2 - VT - Close VT client \n");
-   hw_DebugPrint("3 - VT - Restart VT client\n");
-   hw_DebugPrint("4 - VT - Delete stored pool\n");
-   hw_DebugPrint("5 - VT - Pool reload\n");
-   hw_DebugPrint("6 - VT - Move to another VT\n");
-   hw_DebugPrint("7 - \n");
-   hw_DebugPrint("8 - \n\n");
-   hw_DebugPrint("h - Help \n");
-   hw_DebugPrint("q - Quit\n\n");
-
-}
-
-
-static void DoKeyBoard(void)
-{
-   if (hw_SimGetKbHit() != 0)
-   {
-      int_t c = hw_SimGetCharEx(ISO_TRUE);
-      switch (c)
-      {
-      case '1':
-         hw_DebugPrint("1  \n");
-         break;
-      case '2':
-         hw_DebugPrint("2  - Close VT client \n");
-         VTC_CloseInstance();
-         break;
-      case '3':
-         hw_DebugPrint("3 - Restart VT client \n");
-         VTC_Restart();
-         break;
-#if defined(_LAY6_)
-      case '4':
-         hw_DebugPrint("4 - Delete stored pool \n");
-         VTC_PoolDeleteVersion();
-         break;
-      case '5':
-         hw_DebugPrint("5 - Start Pool reload \n");
-         VTC_PoolReload();
-         break;
-      case '6':
-         hw_DebugPrint("6 - Move to another VT\n");
-         VTC_NextVTButtonPressed();
-         break;
-
-#endif /* defined(_LAY6_) */
-#if defined(_LAY10_)
-      case '7':
-         hw_DebugPrint("7 - \n");
-         break;
-      case '8': 
-         hw_DebugPrint("8 - \n"); 
-         break;
-#endif /* defined(_LAY10_) */
-      case 'h':
-         PrintKeyBoard();
-         break;
-      case 'q':
-         hw_DebugPrint("quit \n");
-         b__AppRuning = ISO_FALSE;
-         break;
-      default: break;
-      }
-   }
-}
-
 
 /* ************************************************************************ */
