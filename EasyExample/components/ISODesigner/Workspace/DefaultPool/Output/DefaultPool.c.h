@@ -53,13 +53,13 @@
 
 #define ISO_OP_MEMORY_CLASS
 
-#define ISO_OP_MyProject1_Size   2105
-extern const unsigned char ISO_OP_MEMORY_CLASS isoOP_MyProject1[];
+#define ISO_OP_DefaultPool_Size   2105
+extern const unsigned char ISO_OP_MEMORY_CLASS isoOP_DefaultPool[];
 
-#define ISO_OP_MyProject1_ObjectNumber     49
-extern const unsigned long ISO_OP_MEMORY_CLASS isoOP_MyProject1_Offset[];
-extern const unsigned long ISO_OP_MEMORY_CLASS isoOP_MyProject1_Offset_Id[];
-#define ISO_OP_MyProject1_Scale_Offset      1
+#define ISO_OP_DefaultPool_ObjectNumber     49
+extern const unsigned long ISO_OP_MEMORY_CLASS isoOP_DefaultPool_Offset[];
+extern const unsigned long ISO_OP_MEMORY_CLASS isoOP_DefaultPool_Offset_Id[];
+#define ISO_OP_DefaultPool_Scale_Offset      1
 
 #define ID_NULL  0xFFFF
 
