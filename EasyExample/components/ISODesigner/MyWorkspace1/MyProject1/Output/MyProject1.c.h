@@ -1,4 +1,4 @@
-// ISO-Designer ISO 11783   Version 5.5.1.4367 Jetter AG
+// ISO-Designer ISO 11783   Version 5.6.1.5243 Jetter AG
 // Do not change!
 
 #define WorkingSet_0_Offset                                     1
@@ -102,13 +102,16 @@ extern const unsigned long ISO_OP_MEMORY_CLASS isoOP_MyProject1_Offset_Id[];
 #define TYPEID_GRPHCTXT      36
 #define TYPEID_OUTLIST       37
 #define TYPEID_EXTINPATTR    38
-#define TYPEID_COLMAP        39
+#define TYPEID_COLORMAP      39
 #define TYPEID_OBJLBLREF     40
 #define TYPEID_EXTOBJDEF     41
 #define TYPEID_EXTREFNAME    42
 #define TYPEID_EXTOBJPTR     43
 #define TYPEID_ANIMATION     44
-#define TYPEID_PNG           46
+#define TYPEID_COLORPAL      45
+#define TYPEID_GRAPHDATA     46
+#define TYPEID_WSSPECIAL     47
+#define TYPEID_SCALEGRAPH    48
 
 #define EV_REFRESH            0
 #define EV_ACT                1
